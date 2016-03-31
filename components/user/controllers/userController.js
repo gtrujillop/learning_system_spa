@@ -24,6 +24,8 @@
     $scope.userPackages = userPackages;
     $scope.addPackage = addPackage;
     $scope.goToSessions = goToSessions;
+    $scope.isEnrolled = isEnrolled;
+    $scope.enroll = enroll;
 
     listUsers();
     getPackages();
@@ -87,8 +89,7 @@
           $state.go('userpackages', {id: $scope.user.id})
         }).error(function(){
            toaster.pop('error', "", "Could not retrieve packages for this user.");
-        })  
-
+        })
       } else {
         toaster.pop('warning', "", "No packages available for this user.");
       }   
@@ -112,9 +113,26 @@
       })
     };
 
-    // function filterEnrollmentsByUserAndPackage(userId, packageId) {
+    function isEnrolled(sessionId, userId) {
+      var enrolled = false;
+      for (var i = 0; i < $scope.enrollments.length; i ++) {
+        var enrollment = $scope.enrollments[i];
+        if (enrollment.user_id == userId && enrollment.session_id == sessionId) {
+          enrolled = true;
+          break;
+        }    
+      }
+      return enrolled;
+    };
 
-    // }
+    function enroll(sessionId, userId) {
+      var enrollment = {user_session: {session_id: sessionId, user_id: userId, grade: 0.0, session_date: new Date()}};
+      userService.enroll(enrollment).success(function() {
+        toaster.pop('success', "", "User enrolled successfully.");
+      }).error(function(){
+        toaster.pop('error', "", "User could not be enrolled on this session.");
+      })
+    }
 
     function addPackage() {
       $scope.user.packages.push({ package_id: $scope.packages[0].id });
@@ -139,10 +157,30 @@
       if ($state.current.name !== 'userpackages' && $state.current.name !== 'userclasses') {
         return;
       };
-      $scope.user = userFactory.getUser();
-      $scope.package = packageFactory.getPackage();
+      
+      if (userFactory.getUser() != {} && packageFactory.getPackage() != {}) {
+        $scope.user = userFactory.getUser();
+        $scope.package = packageFactory.getPackage();
+      } else {
+        for (var i = 0; i < $scope.packages.length; i ++) {
+          var package = $scope.packages[j];
+          if ($state.params.package_id == package.id) {
+            $scope.package = package;
+            break;
+          }
+        }
+
+        for (var j = 0; j < $scope.users.length; j ++) {
+          var user = $scope.users[j];
+           if ($state.params.id == user.id) {
+            $scope.user = user;
+            break;
+          }
+
+        }
+      }
+    
     };
 
   }]);
-
 })();
