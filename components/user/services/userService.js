@@ -16,6 +16,10 @@
       return $http.post(urlBase + '/users', { user: user })
     }
 
+    userService.getEnrollments = function() {
+      return $http.get(urlBase + '/user_sessions/')
+    }
+
     return userService;
   }]);
 })();

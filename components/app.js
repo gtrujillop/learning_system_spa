@@ -205,6 +205,11 @@
               templateUrl: '/user/views/userPackages.html',
               controller: 'userController'
           })
+          .state('userclasses', {
+              url: '/users/:id/packages/:package_id/classes',
+              templateUrl: '/user/views/userSessions.html',
+              controller: 'userController'
+          })
         $urlRouterProvider.otherwise('home');
     }]);
 })();

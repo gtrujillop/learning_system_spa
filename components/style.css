@@ -25,3 +25,8 @@
 .packages {
   margin: auto;
 }
+
+.package-opts {
+  margin: auto;
+  border-top: 1px;
+}
