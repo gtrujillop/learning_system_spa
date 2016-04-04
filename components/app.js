@@ -26,7 +26,7 @@
                                              $stateParams,
                                              loginFactory) {
 
-    var urlBase = 'http://localhost:3001';
+    var urlBase = 'http://localhost:3001/api/v1';
     var loginService = {};
 
     loginService.login = function (user) {
@@ -92,7 +92,7 @@
                                                                                 $state,
                                                                                 toaster,
                                                                                 $sessionStorage) {
- 
+
     $scope.login = login;
     $scope.logout = logout;
     $scope.user = $sessionStorage.user;
@@ -167,42 +167,42 @@
         $stateProvider
           .state('home', {
               url: '/home',
-              templateUrl: '/home/views/home.html',
+              templateUrl: 'home/views/home.html',
               controller: 'homeController'
           })
           .state('newclass', {
               url: '/classes/new',
-              templateUrl: '/session/views/newSession.html',
+              templateUrl: 'session/views/newSession.html',
               controller: 'sessionController'
           })
           .state('classindex', {
               url: '/classes',
-              templateUrl: '/session/views/sessionList.html',
+              templateUrl: 'session/views/sessionList.html',
               controller: 'sessionController'
           })
           .state('newpackage', {
               url: '/packages/new',
-              templateUrl: '/package/views/newPackage.html',
+              templateUrl: 'package/views/newPackage.html',
               controller: 'packageController'
           })
           .state('packageindex', {
               url: '/packages',
-              templateUrl: '/package/views/packageList.html',
+              templateUrl: 'package/views/packageList.html',
               controller: 'packageController'
           })
           .state('newuser', {
               url: '/users/new',
-              templateUrl: '/user/views/newUser.html',
+              templateUrl: 'user/views/newUser.html',
               controller: 'userController'
           })
           .state('userindex', {
               url: '/users',
-              templateUrl: '/user/views/userList.html',
+              templateUrl: 'user/views/userList.html',
               controller: 'userController'
           })
           .state('userpackages', {
               url: '/users/:id/packages',
-              templateUrl: '/user/views/userPackages.html',
+              templateUrl: 'user/views/userPackages.html',
               controller: 'userController'
           })
           .state('userclasses', {
