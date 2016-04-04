@@ -207,7 +207,7 @@
           })
           .state('userclasses', {
               url: '/users/:id/packages/:package_id/classes',
-              templateUrl: '/user/views/userSessions.html',
+              templateUrl: 'user/views/userSessions.html',
               controller: 'userController'
           })
         $urlRouterProvider.otherwise('home');
