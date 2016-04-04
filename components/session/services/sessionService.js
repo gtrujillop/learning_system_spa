@@ -5,7 +5,7 @@
                                                           function ($http,
                                                                          $stateParams) {
 
-    var urlBase = 'http://localhost:3001';
+    var urlBase = 'http://localhost:3001/api/v1';
     var sessionService = {};
 
     sessionService.save = function (session) {
