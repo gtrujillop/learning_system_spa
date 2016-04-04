@@ -14,7 +14,15 @@
 
     userService.save = function(user) {
       return $http.post(urlBase + '/users', { user: user })
-    }
+    };
+
+    userService.getEnrollments = function() {
+      return $http.get(urlBase + '/user_sessions/')
+    };
+
+    userService.enroll = function(enrollment) {
+      return $http.post(urlBase + '/user_sessions', enrollment)
+    };
 
     return userService;
   }]);

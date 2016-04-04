@@ -61,9 +61,9 @@
                <label for="topic">Packages </label>
               <span class="glyphicon glyphicon-plus link" aria-hidden="true" ng-click="addPackage()"></span>
             </div>
-            <div class="row" ng-repeat="package in user.packages">
+            <div class="row package-opts" ng-repeat="package in user.packages">
                 <select
-                  ng-model="package_id"
+                  ng-model="user.packages[$index].package_id"
                   ng-options="package.id as package.name for package in packages"
                   required>
                 </select>
@@ -76,4 +76,5 @@
     </div>
   <div class="col-md-6">
   </div>  
+  {{user}}
 </div>

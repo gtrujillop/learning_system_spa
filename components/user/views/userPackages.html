@@ -11,7 +11,7 @@
     </div>
      <div class="row" ng-repeat="package in user.packages">
       <div class="col-md-4">{{package.name}}</div>
-      <div class="col-md-4">{{package.session_count}}</div>
+      <div class="col-md-4 link" ng-click="goToSessions(user, package)">{{package.session_count}}</div>
       <div class="col-md-4">
       
       </div>
